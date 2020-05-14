@@ -69,7 +69,6 @@ end
 
 post '/DYMO/DLS/Printing/PrintLabel' do
   label_xml = params[:labelXml]
-  record_params = Hash[label.css('ObjectData').map { |d| [d.attributes['Name'].value, d.text] }]
   renderer = Renderer.new(xml: label_xml)
   result = renderer.render
   path = File.expand_path('out.pdf', __dir__)

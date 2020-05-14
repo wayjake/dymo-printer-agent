@@ -74,13 +74,13 @@ post '/DYMO/DLS/Printing/PrintLabel' do
   path = File.expand_path('out.pdf', __dir__)
   File.write(path, result)
 
-  orientation = renderer.orientation
-  media = "Custom.#{renderer.pdf_width}x#{renderer.pdf_height}"
+  # media = "Custom.#{renderer.pdf_width}x#{renderer.pdf_height}"
+  # ,
+  #   '-o', "media=#{media}"
   command = [
     'lpr',
     '-P', params[:printerName],
-    '-o', orientation.to_s,
-    '-o', "media=#{media}"
+    '-o', 'Landscape'
   ]
   if renderer.has_graphics?
     command += ['-o', 'Resolution=300x600dpi']
